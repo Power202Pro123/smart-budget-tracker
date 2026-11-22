@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <!-- importing style.css -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <title>Register</title>
+    </head>
+
+    <body>
+        <form action="/register" method="post">
+            <div class="table-container">
+            <table>
+            <tbody>
+                <tr>
+                <td>
+                    <img src="/static/budget.png" alt="Budget" class="image">
+                    <h2> <span class="highlight-green">Smart</span> Budget Tracker</h2>
+                    <p> Track Smarter. Save Better. </p>
+                </td>
+                <td>
+                    <div class="register-card">
+                        <!-- FLASH error messages -->
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                {{ message }}
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        <!-- Your register content goes here -->
+                        <h1> Create your account </h1>
+                        <p> Start your journey to better budgeting </p>
+                        <div class="mb-3">
+                            <input autocomplete="off" autofocus class="large-input" name="Name" placeholder="Full Name" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <input autocomplete="off" name="User" class="large-input" placeholder="Username" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <input autocomplete="off" name="Password" class="large-input" placeholder="Password" type="password">
+                        </div>
+                        <div class="mb-3">
+                            <input autocomplete="off"  name="Confirm-Password" class="large-input" placeholder="Confirm-Password" type="password">
+                        </div>
+                        <button class="btn-green large-input" type="submit">Register</button>
+                        <br>
+                        <p> Already have an account? <a class="link-bold" href="login.html">Login</a></p>
+                    </div>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+        </form>
+    </body>
+</html>

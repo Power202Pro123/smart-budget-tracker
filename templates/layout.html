@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <!-- Ensures the layout scales correctly on mobile devices and tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Dynamic titles -->
+    <title>{% block title %}AI Budget Tracker{% endblock %}</title>
+    <!-- importing style1.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <!-- importing font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Layout</title>
+
+</head>
+<body>
+    <!-- allows main area to be right and sidebar area to left  -->
+    <div class="app-container">
+        <aside class="sidebar">
+
+        <div class="logo">
+            <img src="/static/budget.png" alt="Budget" class="image">
+            <h2> <span class="highlight-green">Smart</span> Budget Tracker</h2>
+            <p> Track Smarter. Save Better. </p>
+        </div>
+
+        <nav>
+            <!-- Changing to sidebar status animation change when clicked on a route  -->
+            <a href="/" class="{{ 'active' if request.path == '/' else '' }}"> <i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="/budget" class="{{ 'active' if request.path == '/budget' else '' }}"> <i class="fa-solid fa-wallet"></i> Budget</a>
+            <a href="/goals" class="{{ 'active' if request.path == '/goals' else '' }}"> <i class="fa-solid fa-arrow-trend-up"></i> Goals</a>
+            <a href="/expenses" class="{{ 'active' if request.path == '/expenses' else '' }}"> <i class="fa-solid fa-receipt"></i> Transactions</a>
+            <a href="/settings" class="{{ 'active' if request.path == '/settings' else '' }}"> <i class="fa-solid fa-gear"></i> Settings</a>
+        </nav>
+
+        </aside>
+        <!-- body that takes all space of right side  -->
+        <main class="main-content">
+            {% block main %}{% endblock %}
+        </main>
+    </div>
+
+
+</body>
+</html>

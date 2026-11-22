@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block main %}
+
+<html>
+    <head>
+        <!-- importing style.css -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style5.css') }}">
+        <!-- importing font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <title>Settings</title>
+    </head>
+
+    <body>
+
+
+            <!-- FLASH error messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash-alert flash-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+
+        <form action="/logout" method="post">
+            <!-- Right Side: Action Buttons -->
+            <div class="header-container">
+            <div class="header-actions">
+                <button class="btn btn-primary"  type="submit">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Logout
+                </button>
+            </div>
+            </div>
+        </form>
+
+        <form action="/change-user" method="post">
+            <div class="register-card card-center">
+                <img src="/static/budget.png" alt="Budget" class="image">
+                <h1> <span class="highlight-green">Change</span> User</h1>
+                <p> Enter a new username for your account. </p>
+                <!-- Your Login content goes here -->
+                <div class="mb-3">
+                    <input autocomplete="off" name="New_User" class="large-input" placeholder="New Username" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" name="Password_U" class="large-input" placeholder="Password" type="password">
+                </div>
+                <button class="btn-green large-input" type="submit">Change</button>
+                <br>
+            </div>
+        </form>
+            <br>
+            </br>
+        <form action="/change-password" method="post">
+            <div class="register-card card-center">
+                <img src="/static/budget.png" alt="Budget" class="image">
+                <h1> <span class="highlight-green">Change</span> Password</h1>
+                <p> Enter and confirm your new password below. </p>
+                <!-- Your Login content goes here -->
+                <div class="mb-3">
+                    <input autocomplete="off" name="Password_P" class="large-input" placeholder="Old Password" type="password">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" name="New_Password" class="large-input" placeholder="New Password" type="password">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" name="C_New_Password" class="large-input" placeholder="Confirm New Password" type="password">
+                </div>
+                <button class="btn-green large-input" type="submit">Change</button>
+                <br>
+            </div>
+        </form>
+
+        </form>
+    </body>
+</html>
+
+{% endblock %}

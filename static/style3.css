@@ -1,0 +1,410 @@
+/* For goal.html */
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+}
+
+.header-text p {
+  color: #718096;
+  margin-top: 4px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Controls spacing between the buttons */
+}
+
+/* Primary Green Button */
+.btn-primary {
+  background-color: #107c41;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.large-input {
+  width: 350px !important; /* Increases width (overrides Bootstrap w-auto) */
+  padding: 12px 16px;      /* Increases height/spacing inside the box */
+  font-size: 1.1rem;        /* Makes the text and placeholder larger */
+}
+
+
+/* For green button background */
+.btn-green {
+  background-color: #2e7d32;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* FOR FORM */
+#goal-modal.form-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 480px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef2f6;
+  margin: 20px auto;
+}
+
+#goal-modal h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  color: #1a202c;
+  font-weight: 700;
+}
+
+#goal-modal .subtitle {
+  margin: 0 0 24px 0;
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+/* Form Grouping & Labels */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+/* Styled Inputs */
+.styled-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.styled-input:focus {
+  background-color: #ffffff;
+  border-color: #107c41;
+  box-shadow: 0 0 0 3px rgba(16, 124, 65, 0.1);
+}
+
+.styled-textarea {
+  resize: none; /* Disables dragging and resizing */
+  font-family: inherit;
+  min-height: 80px;
+}
+
+/* Buttons Container */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Cancel Button */
+.btn-cancel {
+  background-color: #f1f5f9;
+  color: #4a5568;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #e2e8f0;
+}
+
+/* Create Goal Button */
+.btn-submit {
+  background-color: #107c41;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0b5c30;
+}
+
+/* Helper Class to Toggle Display via JS */
+.hidden {
+  display: none !important;
+}
+
+/* For my table */
+
+.register-card {
+    width: 1300px;
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 45px;
+    background: #f8faf9;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+/* 4 Columns Row */
+.stats-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Individual Stat Box */
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    padding: 0 15px;
+    border-right: 1px solid #e5e7eb; /* Vertical divider */
+}
+
+/* Remove divider on last item */
+.stat-item:last-child {
+    border-right: none;
+}
+
+/* Circle Green Background for Emoji Icons */
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #e8f5e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+/* Text Formatting */
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #111827;
+    margin: 2px 0;
+}
+
+.stat-subtext {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+
+
+
+/* Wrapper for title, stats, progress bar, and footer */
+.goal-details {
+    flex: 1; /* Takes up remaining horizontal space */
+}
+
+
+/* Main title of the goal */
+.goal-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* Secondary description text */
+.goal-description {
+    margin: 2px 0 0 0;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+
+
+
+/* Completed Badge (Green) when goal is 100% completed */
+.completed-badge {
+    background-color: #d1fae5;
+    color: #059669;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* In Progress / Uncompleted Badge (Amber/Gray) */
+.uncompleted-badge {
+    background-color: #fef3c7;
+    color: #d97706;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+/* Flash Styling */
+
+.flash-alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    max-width: 520px;
+}
+
+.flash-danger {
+    background-color: #fde8e8;
+    color: #c81e1e;
+    border: 1px solid #f8b4b4;
+}
+
+.flash-success {
+    background-color: #eaf5ee;
+    color: #147a43;
+    border: 1px solid #d1e7da;
+}
+
+/* Goals table */
+
+/* Stacks each goal item on its own separate row */
+.goals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.goal-item {
+    width: 100%;
+}
+
+/* Places the 4 sections side-by-side inside each goal row */
+.goal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.goal-header,
+.goal-middle-1,
+.goal-middle-2,
+.goal-footer {
+    flex: 1;
+}
+
+.goal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.goal-middle-1,
+.goal-middle-2 {
+    display: flex;
+    justify-content: center;
+}
+
+.goal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px; /* Adds spacing between Delete and Complete */
+}
+
+.highlight-green { /* Goal: turn green */
+  color: #2e7d32; /* Or a specific hex code like #2e7d32 to match your logo */
+}
+
+
+/* Buttons */
+/* goal deletion button */
+.btn-delete-soft {
+    background-color: #eaf5ee;      /* Pale mint background */
+    color: #147a43;                 /* Dark forest green text */
+    border: 1px solid #d1e7da;      /* Subtle green outline */
+    border-radius: 8px;             /* Rounded corners */
+    padding: 6px 14px;              /* Inner spacing (top/bottom, left/right) */
+    font-size: 13px;                /* Compact text size for table rows */
+    font-weight: 600;               /* Semi-bold text */
+    cursor: pointer;                /* Shows hand icon on hover */
+    transition: all 0.2s ease;      /* Smooth color fade when hovered */
+}
+
+/* Hover state: Shifts to soft red to warn before deleting */
+.btn-delete-soft:hover {
+    background-color: #fde8e8;      /* Light red background */
+    color: #c81e1e;                 /* Deep red text */
+    border-color: #f8b4b4;          /* Soft red outline */
+}
+
+
+/* goal complete button */
+.btn-complete-soft {
+    background-color: #eaf5ee;      /* Pale mint background */
+    color: #147a43;                 /* Dark forest green text */
+    border: 1px solid #d1e7da;      /* Subtle green outline */
+    border-radius: 8px;             /* Rounded corners */
+    padding: 6px 14px;              /* Inner spacing (top/bottom, left/right) */
+    font-size: 13px;                /* Compact text size for table rows */
+    font-weight: 600;               /* Semi-bold text */
+    cursor: pointer;                /* Shows hand icon on hover */
+    transition: all 0.2s ease;      /* Smooth color fade when hovered */
+}
+
+/* Hover state: Shifts to soft dark green*/
+.btn-complete-soft:hover {
+    background-color: #def7ec;      /* Soft green background */
+    color: #03543f;                 /* Dark green text */
+    border-color: #84e1bc;          /* Soft green outline */
+}

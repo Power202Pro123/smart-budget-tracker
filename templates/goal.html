@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Goals
+{% endblock %}
+
+{% block main %}
+    <!-- importing style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}">
+    <!-- importing font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <div class="header-container">
+        <!-- Left Side: Title and Subtitle -->
+        <div class="header-text">
+            <h1>Goals</h1>
+            <p>Plan for the future and achieve your dreams.</p>
+        </div>
+
+        <!-- Right Side: Action Buttons -->
+        <div class="header-actions">
+            <button class="btn btn-primary" id="open-goal-modal-btn" type="button">
+            <i class="fa-solid fa-plus"></i> New Goal
+            </button>
+        </div>
+    </div>
+
+    <!-- Flash an error message = error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-alert flash-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+
+
+
+    <!-- + New Goal forms -->
+    <div id="goal-modal" class="form-card hidden">
+            <h2>Create a New Goal</h2>
+            <p class="subtitle">Set a target and start working towards it.</p>
+        <form action="/create-goal" method="POST">
+
+            <div class="form-group">
+            <label for="goal-name">Goal Name</label>
+            <input type="text" id="goal-name" name="name" class="styled-input" placeholder="e.g. New Laptop" required>
+            </div>
+            <div class="form-group">
+            <label for="goal-description">Description</label>
+            <textarea id="goal-description" name="description" class="styled-input styled-textarea" placeholder="What are you saving for?"></textarea>
+            </div>
+            <label for="goal-target">Target Amount</label>
+            <input type="number" id="goal-target" name="target" min="0.01" step="0.01" placeholder="e.g. 60000" class="styled-input" required>
+
+
+        <div class="form-actions">
+            <button type="button" class="btn-cancel" id="close-modal">Cancel</button>
+            <button type="submit" class="btn-submit">Create Goal</button>
+        </div>
+        </form>
+    </div>
+
+
+    <div class="register-card">
+        <div class="stats-grid">
+
+            <!-- Total Goals -->
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Total Goals</span>
+                    <h3 class="stat-value">{{ T_goals }}</h3>
+                    <span class="stat-subtext">Active Goals</span>
+                </div>
+            </div>
+
+            <!-- Total Target -->
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Total Target</span>
+                    <h3 class="stat-value">PKR {{ Target }}</h3>
+                    <span class="stat-subtext">Across all goals</span>
+                </div>
+            </div>
+
+            <!-- Total Saved -->
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Total Saved</span>
+                    <h3 class="stat-value">PKR {{ total_saved }}</h3>
+                    <span class="stat-subtext">Money</span>
+                </div>
+            </div>
+
+            <!-- Completed -->
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fa-solid fa-medal"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Completed</span>
+                    <h3 class="stat-value"> {{ Compeleted }} </h3>
+                    <span class="stat-subtext">Goal achieved</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-text">
+            <h2>Your Goals</h2>
+    </div>
+
+    <div class="goals-list">
+        <!-- Loop through all goal items from database -->
+        {% for goal in goals %}
+        <div class="goal-item">
+        <div class="goal-row">
+            <!-- Main Content (Title, Description) -->
+                <div class="goal-header">
+                        <h4 class="goal-title">{{ goal.name }}</h4>
+                        <p class="goal-description">{{ goal.description or 'No description' }}</p>
+                 </div>
+
+                    <!-- Target -->
+                    <div class="goal-middle-1">
+                        <p class="goal-title"> <span class="highlight-green">Goal:</span> {{ goal.target }}</p>
+                    </div>
+
+                    <!-- delete goal -->
+                    <div class="goal-middle-2">
+                        {% if goal.completed_goal == 1 %}
+                            <span class="completed-badge">
+                                <i class="fas fa-check-circle"></i> Completed
+                            </span>
+                        {% else %}
+                            <span class="uncompleted-badge">
+                                <i class="fas fa-spinner"></i> In Progress
+                            </span>
+                        {% endif %}
+                    </div>
+
+
+                <!--  Goal Status Badge -->
+                <div class="goal-footer">
+
+                <!-- Deletion -->
+                 <form action="/delete-goal" method="POST">
+                        <input type="hidden" name="goal_id" value="{{ goal.id }}">
+                        <button type="submit" class="btn-delete-soft" title="Delete Goal">
+                            Delete
+                        </button>
+                 </form>
+
+                <!-- Completion -->
+                 <form action="/complete-goal" method="POST">
+                        <input type="hidden" name="goal_id" value="{{ goal.id }}">
+                        <button type="submit" class="btn-complete-soft" title="Complete goal">
+                            Complete goal
+                        </button>
+                 </form>
+
+
+                </div>
+            </div>
+            </div>
+            <br>
+
+            <br>
+        <!-- Fallback if goals list is empty -->
+        {% else %}
+                <div class="empty-goals">
+                    <p>No savings goals created yet.</p>
+                </div>
+        {% endfor %}
+    </div>
+
+
+
+
+<!-- JavaScript to show/hide the goals modal -->
+<script>
+
+// runs the script only when page is parsed (read entirely) by browser. //SAFETY
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("goal-modal");
+    const openBtn = document.getElementById("open-goal-modal-btn");
+    const closeBtn = document.getElementById("close-modal");
+
+    // Show modal when 'New Goal' is clicked
+    openBtn.addEventListener("click", () => {modal.classList.remove("hidden");});
+
+    // Hide modal when 'Cancel' is clicked
+    closeBtn.addEventListener("click", () => {modal.classList.add("hidden");});
+});
+</script>
+
+
+
+
+
+
+{% endblock %}

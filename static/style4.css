@@ -1,0 +1,436 @@
+/* For budget.html and expense.html */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+}
+
+.header-text p {
+  color: #718096;
+  margin-top: 4px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Controls spacing between the buttons */
+}
+
+/* Primary Green Button */
+.btn-primary {
+  background-color: #107c41;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.large-input {
+  width: 350px !important; /* Increases width (overrides Bootstrap w-auto) */
+  padding: 12px 16px;      /* Increases height/spacing inside the box */
+  font-size: 1.1rem;        /* Makes the text and placeholder larger */
+}
+
+
+/* For green button background */
+.btn-green {
+  background-color: #2e7d32;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* FOR FORM */
+#budget-modal.form-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 480px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef2f6;
+  margin: 20px auto;
+}
+
+#budget-modal h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  color: #1a202c;
+  font-weight: 700;
+}
+
+#budget-modal .subtitle {
+  margin: 0 0 24px 0;
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+/* Form Grouping & Labels */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+/* Make input and select boxes stretch full width of the card */
+.form-group .styled-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Styled Inputs */
+.styled-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.styled-input:focus {
+  background-color: #ffffff;
+  border-color: #107c41;
+  box-shadow: 0 0 0 3px rgba(16, 124, 65, 0.1);
+}
+
+.styled-textarea {
+  resize: none; /* Disables dragging and resizing */
+  font-family: inherit;
+  min-height: 80px;
+}
+
+/* Buttons Container */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Cancel Button */
+.btn-cancel {
+  background-color: #f1f5f9;
+  color: #4a5568;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #e2e8f0;
+}
+
+/* Create Goal Button */
+.btn-submit {
+  background-color: #107c41;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0b5c30;
+}
+
+/* Helper Class to Toggle Display via JS */
+.hidden {
+  display: none !important;
+}
+
+.register-card {
+    width: 1300px;
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 45px;
+    background: #f8faf9;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+/* 4 Columns Row */
+.stats-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Individual Stat Box */
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    padding: 0 15px;
+    border-right: 1px solid #e5e7eb; /* Vertical divider */
+}
+
+/* Remove divider on last item */
+.stat-item:last-child {
+    border-right: none;
+}
+
+/* Circle Green Background for Emoji Icons */
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #e8f5e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+/* Text Formatting */
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #111827;
+    margin: 2px 0;
+}
+
+.stat-subtext {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* Card Container for table content */
+.table-card {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Table Setup */
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.budget-table th {
+    font-size: 13px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-align: left;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.budget-table td {
+    padding: 14px 0;
+    border-top: 1px solid #f3f4f6;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+/* Column Rules */
+.cat-name {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.desc-cell {
+    color: #6b7280;
+}
+
+.amount-cell {
+    font-weight: 600;
+    color: #10b981; /* Green for Budget */
+    text-align: right;
+}
+
+.spent-cell {
+    font-weight: 600;
+    color: #ef4444; /* Red for Spent */
+    text-align: right;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.empty-msg {
+    text-align: center;
+    color: #9ca3af;
+    padding: 20px 0;
+}
+
+/* Doughnut Styling */
+/* Container layout */
+.chart-container {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Adjusted gap so table stays right next to it */
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+/* Fixed container size for chart canvas */
+.chart-box {
+    position: relative; /* Serves as the anchor point for absolute positioning inside it */
+    width: 300px;       /* Sets the fixed width of the chart box */
+    height: 300px;      /* Sets the fixed height of the chart box */
+    flex-shrink: 0;     /* Prevents flexbox layout from squishing the chart on smaller screens */
+}
+
+/* Overlay centered inside the 300x300 box */
+.chart-center-overlay {
+    position: absolute; /* Positions the text freely relative to .chart-box */
+    top: 50%;           /* Moves the top edge of the text box to the middle of the container */
+    left: 50%;          /* Moves the left edge of the text box to the middle of the container */
+    transform: translate(-50%, -50%); /* Shifts text back by 50% of its own size to achieve exact center alignment */
+    text-align: center; /* Centers multi-line text horizontally */
+    pointer-events: none; /* Prevents text from blocking mouse hovers or clicks on the chart canvas behind it */
+    width: 100%;        /* Spans full width so centered text stays aligned */
+}
+
+/* Large percentage text (e.g., 68%) */
+.percentage-text {
+    font-size: 2rem;     /* Sets a large font size for high visibility */
+    font-weight: 800;    /* Applies extra bold text weight */
+    color: #059669;      /* Emerald green color matching the brand theme */
+    display: block;      /* Forces the element onto its own line above the subtitle */
+    line-height: 1;      /* Reduces vertical line spacing to keep text tight */
+}
+
+/* Subtitle text below percentage (e.g., "OF BUDGET USED") */
+.sub-text {
+    font-size: 0.75rem;          /* Smaller, subtle font size */
+    color: #64748b;              /* Muted slate gray color */
+    font-weight: 700;            /* Bold weight for legibility */
+    letter-spacing: 0.5px;       /* Adds subtle spacing between capital letters */
+    text-transform: uppercase;   /* Automatically converts text to ALL CAPS */
+    margin-top: 4px;             /* Adds a small gap below the percentage number */
+    display: block;              /* Forces the element onto its own line below the percentage */
+}
+
+
+
+/* Table container styling */
+.table-box {
+    flex: 1;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+
+/* Table layout styling */
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+}
+
+.budget-table th,
+.budget-table td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.styled-input {
+  width: 30%;
+  padding: 12px 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+/* table deletion button */
+.btn-delete-soft {
+    background-color: #eaf5ee;      /* Pale mint background */
+    color: #147a43;                 /* Dark forest green text */
+    border: 1px solid #d1e7da;      /* Subtle green outline */
+    border-radius: 8px;             /* Rounded corners */
+    padding: 6px 14px;              /* Inner spacing (top/bottom, left/right) */
+    font-size: 13px;                /* Compact text size for table rows */
+    font-weight: 600;               /* Semi-bold text */
+    cursor: pointer;                /* Shows hand icon on hover */
+    transition: all 0.2s ease;      /* Smooth color fade when hovered */
+}
+
+/* Hover state: Shifts to soft red to warn before deleting */
+.btn-delete-soft:hover {
+    background-color: #fde8e8;      /* Light red background */
+    color: #c81e1e;                 /* Deep red text */
+    border-color: #f8b4b4;          /* Soft red outline */
+}
+
+
+
+/* Flash Styling */
+
+.flash-alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    max-width: 520px;
+}
+
+.flash-danger {
+    background-color: #fde8e8;
+    color: #c81e1e;
+    border: 1px solid #f8b4b4;
+}
+
+.flash-success {
+    background-color: #eaf5ee;
+    color: #147a43;
+    border: 1px solid #d1e7da;
+}

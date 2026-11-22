@@ -1,0 +1,214 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    <!-- importing style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style6.css') }}">
+    <!-- font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <!-- Flash an error message = error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-alert flash-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+<div class="dashboard-wrapper">
+    <!-- ==================== TOP DASHBOARD HEADER ==================== -->
+    <div class="dash-top-header">
+        <!-- Left Side: Title & Current Month -->
+        <div class="dash-title-group">
+            <h1 class="dash-title">Dashboard</h1>
+            <p class="dash-subtitle">Here's what's happening with your <strong>finances.</strong></p>
+        </div>
+
+        <!-- Right Side: Update Monthly Budget Button -->
+        <button type="button" class="btn-update-budget" id="open-budget-modal-btn" data-bs-toggle="modal" data-bs-target="#updateBudgetModal">
+            <i class="fas fa-pen-to-square"></i> Update Monthly Budget
+        </button>
+    </div>
+
+    <!-- update total budget -->
+    <div id="budget-modal" class="form-card" hidden>
+        <h2 class="highlight-green">Update your monthly budget</h2>
+        <p class="subtitle">Set a spending limit for a category.</p>
+        <form action="/update-budget" method="POST">                    <!-- + Form's route -->
+
+            <div class="form-group">
+                <label for="budget-amount">Update Total Budget Amount</label>
+                <input type="number" id="budget-amount" name="amount" min="0.01" step="0.01" placeholder="PKR 20,000" class="styled-input" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" id="close-modal">Cancel</button>
+                <button type="submit" class="btn-submit">Update Total Monthly Budget</button>
+            </div>
+        </form>
+    </div>
+    <!-- JS  -->
+    <!-- JavaScript to show/hide the Budget modal -->
+<script>
+
+    // runs the script only when page is parsed (read entirely) by browser. //SAFETY
+    document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("budget-modal");
+        const openBtn = document.getElementById("open-budget-modal-btn");
+        const closeBtn = document.getElementById("close-modal");
+
+        // Show modal when 'New Budget' is clicked
+        openBtn.addEventListener("click", () => {modal.removeAttribute("hidden");});
+
+        // Hide modal when 'Cancel' is clicked
+        closeBtn.addEventListener("click", () => {modal.setAttribute("hidden", "");});
+    });
+    </script>
+
+
+    <!-- ==================== 1. TOP SUMMARY CARDS ==================== -->
+    <div class="summary-grid">
+
+        <!-- Card 1: Total Budget -->
+        <div class="dash-card stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-wallet"></i>
+            </div>
+            <div class="stat-info">
+                <span class="stat-label">Total Budget</span>
+                <h2 class="stat-amount">PKR {{ Total_budget }}</h2>
+            </div>
+        </div>
+
+        <!-- Card 2: Total Spent -->
+        <div class="dash-card stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="stat-info full-w">
+                <span class="stat-label">Total Spent</span>
+                <h2 class="stat-amount">PKR {{ Total_spent }}</h2>
+                <div class="progress-row">
+                    <!-- Progress bar use TSpent/TBudget -->
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 45%;"></div>
+                    </div>
+                    <span class="progress-text">{{ budget_usage }}% of budget used</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Remaining Balance -->
+        <div class="dash-card stat-card highlight-green">
+            <div class="stat-icon">
+                <i class="fas fa-chart-column"></i>
+            </div>
+            <div class="stat-info">
+                <span class="stat-label">Remaining Balance</span>
+                <h2 class="stat-amount text-green">PKR {{ Remaining }}</h2>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- ==================== 2. MIDDLE SECTION (1 COLUMN) ==================== -->
+    <div class="middle-grid">
+
+        <!-- Left Card: Spending Breakdown -->
+        <div class="dash-card">
+            <div class="card-header space-between">
+            <div class="header-left">
+                <i class="fas fa-chart-pie header-icon"></i>
+                <h3>Spending Breakdown</h3>
+            </div>
+            <a href="/budget" class="dash-link">View All Budgets →</a>
+        </div>
+
+            <div class="breakdown-body">
+                <!-- Donut Chart -->
+                <div class="donut-chart">
+                    <div class="donut-center">
+                        <strong>{{ budget_usage }}%</strong>
+                        <span>of budget</span>
+                    </div>
+                </div>
+
+                <!-- Category Legend Table -->
+                <div class="legend-list">
+                    {% set colors = ['green', 'blue', 'orange', 'purple'] %} <!-- randomiser colours -->
+                    {% for budget in budgets%}
+                        <div class="legend-row">
+                            {% set color = colors | random %} <!-- randomiser colours -->
+                            <span class="legend-name"><i class="dot {{ color }}"></i> {{ budget.category }}</span>
+                            <span class="legend-val">PKR {{ budget.amount }}</span>
+
+                            <span class="legend-pct">{% if Total_spent > 0 %}
+                                                        {{ ((budget.amount / Total_spent) * 100) | round | int }}%
+                                                    {% else %}
+                                                        0%
+                                                    {% endif %}</span>
+                        </div>
+
+                    {% else %}
+                        <div class="empty-msg">No <strong>budgets</strong> reported this month.</div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    <!-- ==================== 3. RECENT ACTIVITY CARD ==================== -->
+    <div class="dash-card">
+        <div class="card-header space-between">
+            <div class="header-left">
+                <i class="fas fa-clock header-icon"></i>
+                <h3>Recent Activity</h3>
+            </div>
+            <a href="/expenses" class="dash-link">View All Expenses →</a>
+        </div>
+
+        <div class="activity-list">
+            {% set colors = ['green', 'blue', 'orange', 'purple'] %} <!-- randomiser colours -->
+            {% for expense in expenses%}
+                    <!-- Rows -->
+                    <div class="activity-row">
+                        <div class="act-item">
+                            <span class="act-icon green-bg"><i class="fas fa-receipt"></i></span>
+                            <span>{{ expense.description }}</span>
+                        </div>
+                        {% set color = colors | random %} <!-- randomiser colours -->
+                        <div class="act-cat"><span class="pill pill-{{ color }}">{{ expense.category }}</span></div>
+                        <div class="act-date">{{ expense.date }}</div>
+                        <div class="act-amount">-PKR {{ expense.spent }}</div>
+                    </div>
+            {% else %}
+                        <div class="empty-msg">No <strong>expenses</strong> reported this month.</div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+
+    <!-- ==================== 4. FOOTER ==================== -->
+    <footer class="dash-footer" >
+        <h1 style="font-family: 'Short Stack', cursive, sans-serif;"> Built with <span class="heart">❤️</span> — Thank you, CS50x! <i class="fas fa-graduation-cap"></i> </h1>
+    </footer>
+
+</div>
+
+
+
+{% endblock %}

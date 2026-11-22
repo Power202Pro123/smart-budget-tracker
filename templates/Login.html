@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <!-- importing style.css -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <title>Login</title>
+    </head>
+
+    <body>
+        <form action="/login" method="post">
+            <div class="register-card card-center">
+                <!-- FLASH error messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                        {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <img src="/static/budget.png" alt="Budget" class="image">
+                <h1> <span class="highlight-green">Welcome</span> Back!</h1>
+                <p> Log in to continue tracking your finances. </p>
+                <!-- Your Login content goes here -->
+                <div class="mb-3">
+                    <input autocomplete="off" name="User" class="large-input" placeholder="Username" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" name="Password" class="large-input" placeholder="Password" type="password">
+                </div>
+                <button class="btn-green large-input" type="submit">Login</button>
+                <br>
+                <p> Don't have an account? <a class="link-bold" href="/register">Register</a></p>
+            </div>
+        </form>
+    </body>
+</html>

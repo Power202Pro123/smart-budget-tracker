@@ -1,0 +1,92 @@
+/* For Register and Login */
+.table-container {
+    display: flex;
+    justify-content: center; /* Centers the table on the page */
+    width: 100%;
+}
+
+table{
+  width: 100%;
+}
+
+/* Split columns evenly and center content */
+td {
+  width: 50%;           /* Gives each of the 2 columns half the screen */
+  text-align: center;   /* Centers text and inline images horizontally */
+  vertical-align: middle; /* Centers content vertically inside cells */
+}
+
+/* Ensure the image displays cleanly in the center */
+.image {
+  display: inline-block;
+  max-width: 200px;     /* Adjust size as needed */
+  height: auto;
+}
+
+.register-card {
+    width: 700px;
+    max-width: 90%;
+    margin: 40px auto;
+    padding: 45px;
+    background: #f8faf9;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.mb-3 { /* spacing in bw */
+  margin-bottom: 1rem;
+}
+
+.large-input {
+  width: 350px !important; /* Increases width (overrides Bootstrap w-auto) */
+  padding: 12px 16px;      /* Increases height/spacing inside the box */
+  font-size: 1.1rem;        /* Makes the text and placeholder larger */
+}
+
+.highlight-green { /* AI turn green */
+  color: #2e7d32; /* Or a specific hex code like #2e7d32 to match your logo */
+}
+
+/* For green button background */
+.btn-green {
+  background-color: #2e7d32;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.card-center { /* center align content in card  */
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* Centers input boxes, buttons, and images */
+  text-align: center;     /* Centers headings and paragraphs */
+}
+
+.link-bold { /* no underlines on links and Bold  */
+  text-decoration: none; /* Removes the underline */
+  font-weight: bold;     /* Makes the link text bold */
+  color: #2e7d32;        /* Matches your green theme */
+}
+
+/* FLASH alert styling */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.alert-error {
+  background-color: #fee2e2; /* Light red tint */
+  color: #991b1b;           /* Dark red text */
+  border: 1px solid #f87171;
+}
+
+.alert-success {
+  background-color: #dcfce7; /* Light green tint */
+  color: #166534;           /* Dark green text */
+  border: 1px solid #4ade80;
+}

@@ -1,0 +1,111 @@
+/* For layout.html */
+.sidebar {
+    width: 280px;
+    min-height: 100vh; /* Fills full screen height and grows with long content */
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Prevents padding from increasing width/height */
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-left: 10px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #555;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.sidebar a:hover {
+    background: #f3f4f6;
+}
+
+.sidebar a.active {
+    background: #e8f0fe;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+
+.highlight-green { /* AI turn green */
+  color: #2e7d32; /* Or a specific hex code like #2e7d32 to match your logo */
+}
+
+/* Ensure the image displays cleanly in the center */
+.image {
+  display: inline-block;
+  max-width: 200px;     /* Adjust size as needed */
+  height: auto;
+}
+
+/* Styling for all navigation links */
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  color: #4b5563;             /* Dark gray text by default */
+  text-decoration: none;
+  border-radius: 10px;        /* Rounded corners matching the image */
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Default icon color for inactive links */
+.sidebar nav a i {
+  color: #4b5563;
+  width: 20px;
+}
+
+/* Selected / Clicked Active State */
+.sidebar nav a.active {
+  background-color: #f0fdf4;  /* Soft light green background */
+  color: #16a34a;             /* Medium green text */
+  font-weight: 600;
+}
+
+/* Ensures the icon turns green inside the active link */
+.sidebar nav a.active i {
+  color: #16a34a !important;
+}
+
+/* Hover state for inactive links */
+.sidebar nav a:hover:not(.active) {
+  background-color: #f9fafb;
+}
+
+/* Content area expands to fill all remaining space on the right */
+.main-content {
+  flex: 1;
+  padding: 32px;
+  background-color: #f9fafb; /* Light background for contrast */
+}
+
+/* Remove default spacing and ensure full screen height */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+/* Flex layout keeps sidebar on left and content on right */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}

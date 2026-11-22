@@ -1,0 +1,548 @@
+/* For dashboard.html */
+
+
+/* ==================== TOP DASHBOARD HEADER ==================== */
+.dash-top-header {
+    display: flex;
+    justify-content: space-between; /* Pushes title left and button right */
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 4px;
+}
+
+.dash-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dash-title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.dash-subtitle {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #6b7280;
+}
+
+/* Top-Right Update Monthly Budget Button */
+.btn-update-budget {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #24784d;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(36, 120, 77, 0.2);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-update-budget:hover {
+    background-color: #1b5e3b;
+    transform: translateY(-1px); /* button goesup */
+}
+
+
+
+
+/* ==================== MAIN CONTAINER & BASE CARD ==================== */
+.dashboard-wrapper {
+    max-width: 1150px;
+    margin: 24px auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #212529;
+}
+
+/* Shared white card styling across all sections */
+.dash-card {
+    background-color: #ffffff;
+    border: 1px solid #e6ece8;
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* ==================== 1. TOP SUMMARY CARDS ==================== */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+    gap: 20px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Soft green tint for the Remaining Balance card */
+.highlight-green {
+    background-color: #eaf7ee;
+    border-color: #ccead6;
+}
+
+/* Rounded square icon badge on the left of each summary card */
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background-color: #dcfce7;
+    color: #1f7a4c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-w {
+    width: 100%;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 4px;
+}
+
+.stat-amount {
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1f2937;
+}
+
+.text-green {
+    color: #1f7a4c;
+}
+
+/* Progress bar inside Total Spent & Active Goal */
+.progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.progress-track {
+    flex: 1;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #1f7a4c;
+    border-radius: 999px;
+}
+
+.progress-text {
+    font-size: 0.78rem;
+    color: #4b5563;
+    white-space: nowrap;
+}
+
+/* ==================== 2. MIDDLE SECTION (2 COLUMNS) ==================== */
+.middle-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* Card section headers with green icon */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.card-header.space-between {
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon {
+    color: #1f7a4c;
+    font-size: 1.15rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Spending Breakdown: Donut Chart + Legend side by side */
+.breakdown-body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 56px;
+    padding: 8px 16px;
+}
+
+/* Pure CSS Conic-Gradient Donut Chart */
+.donut-chart {
+    width: 165px;
+    height: 165px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #1f7a4c 0% 28%,     /* Food */
+        #3b82f6 28% 50%,    /* Transport */
+        #f59e0b 50% 67%,    /* Shopping */
+        #7c3aed 67% 85%,    /* Other */
+        #9ca3af 85% 100%    /* Remaining / Unallocated */
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Inner white circle of the donut */
+.donut-center {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.donut-center strong {
+    font-size: 1.35rem;
+    color: #1f2937;
+    line-height: 1.1;
+}
+
+.donut-center span {
+    font-size: 0.78rem;
+    color: #6b7280;
+}
+
+/* Category Legend Table */
+.legend-list {
+    flex: 1;
+    max-width: 650px; /* Keeps the rows from stretching too far apart on wide screens */
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.legend-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.6fr;
+    align-items: center;
+    font-size: 0.92rem;
+}
+
+.legend-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.legend-val {
+    font-weight: 600;
+    text-align: right;
+}
+
+.legend-pct {
+    font-weight: 600;
+    color: #4b5563;
+    text-align: right;
+}
+
+/* Colored legend dots */
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot.green  { background-color: #1f7a4c; }
+.dot.blue   { background-color: #3b82f6; }
+.dot.orange { background-color: #f59e0b; }
+.dot.purple { background-color: #7c3aed; }
+
+/* Quick Actions Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.btn-dash-primary {
+    display: block;
+    text-align: center;
+    background-color: #24784d;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 11px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-dash-primary:hover {
+    background-color: #1b5e3b;
+}
+
+/* Active Goal Mini Section */
+.active-goal-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.goal-label-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.trophy-icon {
+    color: #eab308;
+}
+
+.goal-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.92rem;
+}
+
+.goal-numbers {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+/* Green navigation links ("View All Goals ->", "View All Expenses ->") */
+.dash-link {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1f7a4c;
+    text-decoration: none;
+}
+
+.dash-link:hover {
+    text-decoration: underline;
+}
+
+/*   RECENT ACTIVITY LIST  */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 0.8fr; /* 4 aligned columns */
+    align-items: center;
+    padding: 11px 4px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.92rem;
+}
+
+.activity-row:last-child {
+    border-bottom: none;
+}
+
+.act-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+/* Small square icon beside each expense item */
+.act-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.green-bg  { background-color: #dcfce7; color: #166534; }
+.blue-bg   { background-color: #dbeafe; color: #1e40af; }
+.orange-bg { background-color: #fef3c7; color: #b45309; }
+.purple-bg { background-color: #ede9fe; color: #5b21b6; }
+
+/* Category pills */
+.pill {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.pill-green  { background-color: #dcfce7; color: #166534; }
+.pill-blue   { background-color: #dbeafe; color: #1e40af; }
+.pill-orange { background-color: #fef3c7; color: #b45309; }
+.pill-purple { background-color: #ede9fe; color: #5b21b6; }
+
+.act-date {
+    color: #4b5563;
+}
+
+.act-amount {
+    text-align: right;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* ==================== 4. FOOTER ==================== */
+.dash-footer {
+    text-align: center;
+    padding: 12px 0 24px;
+    font-size: 0.88rem;
+    color: #6b7280;
+}
+
+.dash-footer .heart {
+    color: #dc2626;
+}
+
+/* for forms to update monthly budget */
+/* Helper Class to Toggle Display via JS */
+.hidden {
+  display: none !important;
+}
+/* Cancel Button */
+.btn-cancel {
+  background-color: #f1f5f9;
+  color: #4a5568;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #e2e8f0;
+}
+
+/* Create Goal Button */
+.btn-submit {
+  background-color: #107c41;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0b5c30;
+}
+/* Buttons Container */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+/* Form Grouping & Labels */
+.form-group {
+  margin-bottom: 18px;
+}
+/* FOR FORM */
+#budget-modal.form-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 480px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef2f6;
+  margin: 20px auto;
+}
+
+#budget-modal h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  color: #1a202c;
+  font-weight: 700;
+}
+
+#budget-modal .subtitle {
+  margin: 0 0 24px 0;
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+.highlight-green { /* AI turn green */
+  color: #2e7d32; /* Or a specific hex code like #2e7d32 to match your logo */
+}
+
+/* Flash Styling */
+
+.flash-alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    max-width: 520px;
+}
+
+.flash-danger {
+    background-color: #fde8e8;
+    color: #c81e1e;
+    border: 1px solid #f8b4b4;
+}
+
+.flash-success {
+    background-color: #eaf5ee;
+    color: #147a43;
+    border: 1px solid #d1e7da;
+}
